@@ -1,0 +1,46 @@
+{% extends "base_layout.html" %}
+
+{% block heading %}
+    <div class="heading-container mb-4">
+        <h1 id="app-name">Steganography master 3000</h1>
+    </div>
+{% endblock heading %}
+
+{% block content %}
+    <form action="/decode" method="post" enctype="multipart/form-data" id="form" class="{{ was_validated }}">
+
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Input Image</label>
+            <input class="form-control" name="image" type="file" id="formFile" required>
+            {% for error in error_data["image"] %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Decoded Message</label>
+            <figure>
+                <blockquote class="blockquote">
+                {% if decoded_message %}
+                    <p>“{{ decoded_message }}”</p>
+                {% else %}
+                    <p>“I'm so empty..”</p>
+                {% endif %}
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                    {% if decoded_message %}
+                        God knows who
+                    {% else %}
+                        Yours sincerely, The Architect
+                    {% endif %}
+                </figcaption>
+            </figure>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-start mt-8">
+            <button class="btn btn-primary" type="submit">Gib message</button>
+            <a href="/" class="btn btn-light" type="submit">Go back</a>
+        </div>
+
+    </form>
+{% endblock content %}

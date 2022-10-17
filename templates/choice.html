@@ -1,0 +1,14 @@
+{% extends "base_layout.html" %}
+
+{% block heading %}
+    <div class="heading-container mb-5">
+        <h1 class="text-center" id="app-name">Steganography master 3000</h1>
+    </div>
+{% endblock heading %}
+
+{% block content %}
+    <div class="d-grid gap-2 d-md-flex justify-content-center">
+        <a href="/encode" class="btn btn-primary">Encode me!</a>
+        <a href="/decode" class="btn btn-primary">I must be decoded.</a>
+    </div>
+{% endblock content %}

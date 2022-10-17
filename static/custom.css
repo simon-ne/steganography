@@ -1,0 +1,20 @@
+.custom-max-width {
+    max-width: 450px;
+}
+
+#app-name {
+    font-weight: 900;
+    font-size: 3.5rem;
+}
+
+.form-label {
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #8b939d;
+}
+
+.custom-container-center {
+    margin: 0 auto;
+}

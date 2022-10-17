@@ -1,0 +1,23 @@
+{% extends "base_layout.html" %}
+
+{% block heading %}
+    <div class="heading-container mb-4">
+        <h1 id="app-name">Steganography master 3000</h1>
+    </div>
+{% endblock heading %}
+
+{% block content %}
+    <div class="alert alert-success text-center" role="alert">
+        YEY! Message succesfully encoded into the image.
+    </div>
+
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Image capacity</label>
+        <p>{{ img_capacity }} Bytes</p>
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-start mt-8">
+        <a href="/download?path={{ download_path }}" class="btn btn-primary">Download encoded image</a>
+        <a href="/" class="btn btn-light">Go back</a>
+    </div>
+{% endblock content %}

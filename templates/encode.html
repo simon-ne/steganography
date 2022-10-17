@@ -1,0 +1,34 @@
+{% extends "base_layout.html" %}
+
+{% block heading %}
+    <div class="heading-container mb-4">
+        <h1 id="app-name">Steganography master 3000</h1>
+    </div>
+{% endblock heading %}
+
+{% block content %}
+    <form action="/encode" method="post" enctype="multipart/form-data" id="form" class="{{ was_validated }}">
+
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Input Image</label>
+            <input class="form-control" name="image" type="file" id="formFile" required> 
+            {% for error in error_data["image"] %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mb-3">
+            <label for="message" class="form-label">Input Message</label>
+            <textarea class="form-control" id="message" name="message" rows="3" placeholder="Top Secret Message Here.." required></textarea>
+            {% for error in error_data["message"] %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-start mt-8">
+            <button class="btn btn-primary" type="submit">Encode plz</button>
+            <a href="/" class="btn btn-light" type="submit">Go back</a>
+        </div>
+
+    </form>
+{% endblock content %}
