@@ -51,14 +51,13 @@ def encode():
     encoded_img_path = f"encoded_images/{encoded_img_name}"
     try:
         result = encode_to_img(img_path, message, encoded_img_path)
-        if "ERROR" in result:
+        if result != None and "ERROR" in result:
             return render_template("error.html", error_message = result)
     except:
         return render_template("error.html", error_message = "Oops, this wasn't supposed to happen. Try again.")
-    
-    
+        
     img_capacity = get_img_capacity(img_path)
-    if "ERROR" in img_capacity:
+    if type(img_capacity) != int and  "ERROR" in img_capacity:
         return render_template("error.html", error_message = img_capacity)
 
     return render_template("encode_success.html", img_capacity = img_capacity, download_path = encoded_img_path)
@@ -106,4 +105,4 @@ def download():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

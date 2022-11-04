@@ -3,7 +3,13 @@ from math import floor
 
 MSG_LENGTH_SPACE = 16
 
-def get_new_val(val, bit):
+def get_new_val(val, binary_data, bit_counter):
+    if bit_counter >= len(binary_data):
+        # print("YEY")
+        return val
+
+    bit = binary_data[bit_counter]
+
     val_parity = True if val % 2 == 0 else False
     bit_parity = True if bit == '1' else False
 
@@ -18,14 +24,9 @@ def get_new_val(val, bit):
 def get_altered_pixel(pixel, binary_data, bit_counter):
     new_pixel = []
 
+    # print(pixel)
     for val in pixel:
-
-        if bit_counter >= len(binary_data):
-            for i in range(len(new_pixel), 4):
-                new_pixel.append(pixel[i])
-            return -1, tuple(new_pixel)
-
-        new_val = get_new_val(val, binary_data[bit_counter])
+        new_val = get_new_val(val, binary_data, bit_counter)
         new_pixel.append(new_val)
         bit_counter += 1
     
@@ -89,9 +90,14 @@ def encode_to_img(img_path, message, output_path="encoded.png"):
     if "ERROR" in binary_data:
         return binary_data # Sloppy
 
+    # print("ahoj")
+    # print(input_image.height)
+    # print(input_image.width)
+    # print(len(binary_data))
     bit_counter = 0
-    for row in range(input_image.height):
-        for col in range(input_image.width):
+    for row in range(input_image.height - 1):
+        for col in range(input_image.width - 1):
+            # print(row)
 
             pixel = pixel_map[col, row]
             bit_counter, new_pixel = get_altered_pixel(pixel, binary_data, bit_counter)
